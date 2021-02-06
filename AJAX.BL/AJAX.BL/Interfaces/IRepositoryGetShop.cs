@@ -8,5 +8,6 @@ namespace AJAX.BL.Interfaces
     public interface IRepositoryGetShop
     {
         ICollection<ShopBL> GetAllShop();
+        ShopBL GetShopById(int? id);
     }
 }

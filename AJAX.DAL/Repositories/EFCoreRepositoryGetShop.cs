@@ -1,5 +1,6 @@
 ﻿using AJAX.BL.Interfaces;
 using AJAX.BL.ModelsBl;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -18,6 +19,21 @@ namespace AJAX.DAL.Repositories
             }
 
             return shopsresult;
+        }
+
+        public ShopBL GetShopById(int? id)
+        {
+            if (id == null)
+                throw new NullReferenceException();
+
+            ShopBL shopById;
+
+            using (var context = new DataContext())
+            {
+                shopById = context.Shops.Where(x => x.Id == id).FirstOrDefault().ToShopModel();
+            }
+
+            return shopById;
         }
     }
 }

@@ -6,21 +6,35 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using AJAX.WEB.Models;
+using AJAX.BL.Interfaces;
+using AJAX.DAL.ModelsDAL;
+using AJAX.BL.ModelsBl;
 
 namespace AJAX.WEB.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IRepositoryGetShop _repositoryGetShop;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        public HomeController(ILogger<HomeController> logger, IRepositoryGetShop repositoryGetShop)
         {
             _logger = logger;
+            _repositoryGetShop = repositoryGetShop;
         }
 
         public IActionResult Index()
         {
-            return View();
+            ICollection<ShopBL> shopResult = _repositoryGetShop.GetAllShop(); ;
+
+            return View(shopResult);
+        }
+
+        public IActionResult Description(int? id)
+        {
+            var shopById = _repositoryGetShop.GetShopById(id);
+            return PartialView(shopById);
         }
 
         public IActionResult Privacy()

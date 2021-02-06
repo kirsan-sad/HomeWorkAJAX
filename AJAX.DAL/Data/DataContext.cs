@@ -11,5 +11,10 @@ namespace AJAX.DAL
         {
             optionsBuilder.UseSqlServer(@"Data Source=.\SQLEXPRESS;Initial Catalog=Shopdb;Integrated Security=True");
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ShopDAL>().ToTable("ShopDAL");
+        }
     }
 }
