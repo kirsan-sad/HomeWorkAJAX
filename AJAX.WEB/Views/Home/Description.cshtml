@@ -1,3 +1,6 @@
 ﻿@model AJAX.BL.ModelsBl.ShopBL
 
-<p>@Html.DisplayFor(model => model.Description)</p>
+    <div id="description">
+        <h3>Shop @Html.DisplayFor(model => model.Name)</h3>
+        <p>@Html.DisplayFor(model => model.Description)</p>
+    </div>

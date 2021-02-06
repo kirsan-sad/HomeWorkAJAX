@@ -15,7 +15,7 @@
             <tr>
                 <td>@item.Name</td>
                 <td>@item.Schedule</td>
-                <td><input type='button' id="submit" value='Details' data-value="@item.Index"/></td>
+                <td><input type='button' class="submit" value='Details' data-value="@item.Index"/></td>
             </tr>
         }
     </table>
@@ -24,7 +24,7 @@
 
     <script type="text/javascript">
          $(document).ready(function () {
-             $('#submit').click(function (e) {
+             $('.submit').click(function (e) {
                 e.preventDefault();
                 var id = $(this).data('value');
             $('#results').load('@Url.Action("Description", "Home")?id='+id)
