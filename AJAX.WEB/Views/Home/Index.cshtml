@@ -2,9 +2,9 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js"></script>
-<script scr="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
@@ -15,7 +15,7 @@
             <tr>
                 <td>@item.Name</td>
                 <td>@item.Schedule</td>
-                <td><a href="#" id="details" value="@item.Index">Details</a></td>
+                <td><input type='button' id="submit" value='Details' data-value="@item.Index"/></td>
             </tr>
         }
     </table>
@@ -24,9 +24,9 @@
 
     <script type="text/javascript">
          $(document).ready(function () {
-            $('#details').click(function (e) {
+             $('#submit').click(function (e) {
                 e.preventDefault();
-                var id = $('#details').val();
+                var id = $(this).data('value');
             $('#results').load('@Url.Action("Description", "Home")?id='+id)
             });
          });
